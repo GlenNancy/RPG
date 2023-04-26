@@ -5,7 +5,7 @@ using RpgApi.Models;
 using RpgApi.Models.Enuns;
 using RpgApi.Data;
 
-namespace RpgApi.AddControllers
+namespace RpgApi.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
@@ -51,9 +51,16 @@ namespace RpgApi.AddControllers
             try
             {
                 if(novaArma.Dano == 0)
-                {
+                
                     throw new Exception("O dano da arma não pode ser 0");
-                }
+
+
+                Personagem p = await _context.Personagens
+                    .FirstOrDefaultAsync(p => p.Id == novaArma.PersonagemId);
+
+                if(p == null)
+                    throw new System.Exception("Não existe personagem com o Id informado.");
+
                 await _context.Armas.AddAsync(novaArma);
                 await _context.SaveChangesAsync();
 

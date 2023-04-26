@@ -308,3 +308,7 @@ D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\obj\Debug\net7.0\refint\RpgApi
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\obj\Debug\net7.0\RpgApi.pdb
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\obj\Debug\net7.0\RpgApi.genruntimeconfig.cache
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\obj\Debug\net7.0\ref\RpgApi.dll
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgApi\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
