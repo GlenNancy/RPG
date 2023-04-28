@@ -93,8 +93,16 @@ namespace RpgApi.Controllers
         {
             try
             {
-               Criptografia.CriarPasswordHash(senha.PasswordString, out byte[] hash, out byte[]salt);
-            }
+                Criptografia.CriarPasswordHash(senha.PasswordString, out byte[] hash, out byte[]salt);
+                senha.PasswordString = string.Empty;
+                senha.PasswordHash = hash;
+                senha.PasswordSalt = salt;
+
+                _context.Usuarios.Update(senha);
+                await _context.SaveChangesAsync();
+
+                return Ok(senha.Id);
+}
             catch (System.Exception ex)
             {
                 return BadRequest(ex.Message);
