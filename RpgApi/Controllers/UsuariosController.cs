@@ -120,6 +120,7 @@ namespace RpgApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+            sadsad
         }
 
     }
