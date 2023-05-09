@@ -21,6 +21,7 @@ namespace RpgApi.Data
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Habilidade> Habilidades { get; set; }
         public DbSet<PersonagemHabilidade> PersonagemHabilidades { get; set; }
+        public DbSet<Disputa> Disputas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

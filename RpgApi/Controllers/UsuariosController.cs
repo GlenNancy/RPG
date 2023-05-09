@@ -7,6 +7,8 @@ using RpgApi.Utils;
 using RpgApi.Data;
 using System;
 using RpgApi;
+using System.Linq;
+using System.Collections.Generic;
 
 
 
@@ -76,9 +78,7 @@ namespace RpgApi.Controllers
                     usuario.DataAcesso = System.DateTime.Now;
                     _context.Usuarios.Update(usuario);
                     await _context.SaveChangesAsync(); //Confirma a alteração no banco
-
-
-                    return Ok(usuario);
+                    return Ok(usuario.Id);
 
                 }
             }
@@ -102,7 +102,7 @@ namespace RpgApi.Controllers
                 await _context.SaveChangesAsync();
 
                 return Ok(senha.Id);
-}
+            }
             catch (System.Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -120,8 +120,77 @@ namespace RpgApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
-            sadsad
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSingle(int id)
+        {
+            try
+            {
+                Personagem p = await _context.Personagens
+                    .Include(ar => ar.Armas)
+                    .Include(us => us.Usuario)
+                    .Include(ph => ph.PersonagemHabilidades)
+                        .ThenInclude(h => h.Habilidade)
+                    .FirstOrDefaultAsync(pBusca => pBusca.Id == id);
 
+                return Ok(p);  
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("{personagemId}")]
+        public async Task<IActionResult> GetHabilidadesPersonagem(int personagemId)
+        {
+            try
+            {
+                List<PersonagemHabilidade> phLista = new List<PersonagemHabilidade>();
+                phLista = await _context.PersonagemHabilidades
+                .Include(p => p.Personagem)
+                .Include(p => p.Habilidade)
+                .Where(p => p.Personagem.Id == personagemId).ToListAsync();
+                
+                return Ok(phLista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("GetHabilidades")]
+        public async Task<IActionResult> GetHabilidades()
+        {
+            try
+            {
+                List<Habilidade> habilidades = new List<Habilidade>();
+                habilidades = await _context.Habilidades.ToListAsync();
+                return Ok(habilidades);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("DeletePersonagemHabilidade")]
+        public async Task<IActionResult> DeleteAsync(PersonagemHabilidade ph)
+        {
+            try
+            {
+                PersonagemHabilidade phRemover = await _context.PersonagemHabilidades
+                    .FirstOrDefaultAsync(phBusca => phBusca.PersonagemId == ph.PersonagemId && phBusca.HabilidadeId == ph.HabilidadeId);
+                if(phRemover == null)
+                    throw new System.Exception("Personagem ou Habilidade não encontrados");
+
+                _context.PersonagemHabilidades.Remove(phRemover);
+                int linhasAfetadas = await _context.SaveChangesAsync();
+                
+                return Ok(linhasAfetadas);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
