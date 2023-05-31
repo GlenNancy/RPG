@@ -17,9 +17,9 @@ namespace RpgMvc.Models
         public Usuario Usuario { get; set; }
 
         [JsonIgnore]
-        public Armas Armas { get; set; }
+        public Armas Armas { get; set; }*/
 
-        public List<PersonagemHabilidade> PersonagemHabilidades { get; set; }*/
+        public List<PersonagemHabilidadeViewModel> PersonagemHabilidades { get; set; }
 
         public int Disputas { get; set; }
         public int Vitorias { get; set; }

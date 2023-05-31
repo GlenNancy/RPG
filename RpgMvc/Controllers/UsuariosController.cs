@@ -1,13 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using RpgMvc.Models;
+using Microsoft.AspNetCore.Http;
+using System.Net.Http.Headers;
 
 namespace RpgMvc.Controllers
 {
     public class UsuariosController : Controller
     {
-        public string uriBase = "http://localhost:5164/Usuarios/";
-        
+        public string uriBase = "http://glennancy.somee.com/RpgApi/Personagens/";
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -15,7 +17,7 @@ namespace RpgMvc.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> RegistrarAsync(UsuarioViewModel u)
+        public async Task<IActionResult> RegistrarAsync(UsuarioViewModel u)
         {
             try
             {
@@ -38,7 +40,6 @@ namespace RpgMvc.Controllers
                 {
                     throw new System.Exception(serialized);
                 }
-
             }
             catch (System.Exception ex)
             {
@@ -50,10 +51,11 @@ namespace RpgMvc.Controllers
         [HttpGet]
         public ActionResult IndexLogin()
         {
-            return View("AutenticarUsuario");
+            return View("Autenticar");
         }
+
         [HttpPost]
-        public async Task<ActionResult> AutenticarAsync(UsuarioViewModel u)
+        public async Task<IActionResult> AutenticarAsync(UsuarioViewModel u)
         {
             try
             {
@@ -61,7 +63,7 @@ namespace RpgMvc.Controllers
                 string uriComplementar = "Autenticar";
 
                 var content = new StringContent(JsonConvert.SerializeObject(u));
-                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 HttpResponseMessage response = await httpClient.PostAsync(uriBase + uriComplementar, content);
 
                 string serialized = await response.Content.ReadAsStringAsync();
@@ -70,7 +72,8 @@ namespace RpgMvc.Controllers
                 {
                     UsuarioViewModel uLogado = JsonConvert.DeserializeObject<UsuarioViewModel>(serialized);
                     HttpContext.Session.SetString("SessionTokenUsuario", uLogado.Token);
-                    TempData["Mensagem"] = string.Format("Bem-vindo {0}!!!", uLogado.Username);
+                    TempData["Mensagem"] =
+                        string.Format("Bem-vindo {0}!!!", uLogado.Username);
                     return RedirectToAction("Index", "Personagens");
                 }
                 else

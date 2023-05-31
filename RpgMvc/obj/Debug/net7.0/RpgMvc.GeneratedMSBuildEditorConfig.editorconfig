@@ -16,12 +16,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Disputas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcHV0YXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Disputas/IndexDisputas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcHV0YXNcSW5kZXhEaXNwdXRhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Disputas/IndexHabilidades.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzcHV0YXNcSW5kZXhIYWJpbGlkYWRlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/PersonagemHabilidades/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYWdlbUhhYmlsaWRhZGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/2DS/AntonioMauricio/DSI/Aula04_07032023/RpgMvc/Views/Personagens/Create.cshtml]

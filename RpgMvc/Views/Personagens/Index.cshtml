@@ -1,6 +1,18 @@
 @model IEnumerable<RpgMvc.Models.PersonagemViewModel>
 
 @{ViewBag.Title = "Personagens"; }
+
+@if (@TempData["Mensagem"] != null)
+{
+    <div class="alert alert-success" role="alert">
+
+        @Html.Raw(TempData["Mensagem"])</div>
+}
+@if (@TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @Html.Raw(TempData["MensagemErro"])</div>
+}
 <h2>Relação de Personagens</h2>
 <p>
     @Html.ActionLink("Criar Novo Personagem", "Create")
@@ -28,11 +40,20 @@
             <td>@Html.DisplayFor(modelItem => item.Vitorias)</td>
             <td>@Html.DisplayFor(modelItem => item.Derrotas)</td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id}) |
-                @Html.ActionLink("Detalhes", "Details", new { id = item.Id}) |
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id } ) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Deletar", "Delete", new { id = item.Id }
-                    , new { onclick = "return confirm('Deseja realmente deletar este personagem? '):"})
+                    ,new { onclick = "return confirm('Deseja realmente deletar este personagem ?');"}) |
+                @Html.ActionLink("Listar Hablidades", "Index", "PersonagemHabilidades", new { id = item.Id })
             </td>
-        </tr>
+        </tr>        
     }
 </table>
+@Html.ActionLink("Clique aqui para um combate com Armas!!!", "Index", "Disputas",
+    null, new { @class = "btn btn-warning"})
+@Html.ActionLink("Clique aqui para um combate com Habilidade!!!", "IndexHabilidades", "Disputas",
+    null, new { @class = "btn btn-dark"})
+@Html.ActionLink("Clique aqui para um embate em Grupo!!!", "DisputaGeral", "Disputas",
+    null, new { @class = "btn btn-danger"})
+@Html.ActionLink("Zerar ranking e restaurar pontos de vida", "ZerarRankingRestaurarVidas", "Personagens",
+    null, new { @class = "btn btn-secondary", onclick = "return confirm('Deseja realmente realizar esta ação ?');" }) 
