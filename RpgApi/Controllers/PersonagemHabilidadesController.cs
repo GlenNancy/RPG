@@ -1,19 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-using Microsoft.EntityFrameworkCore;
-using RpgApi.Models;
-using RpgApi.Models.Enuns;
 using RpgApi.Data;
+using RpgApi.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace RpgApi.Controller
+namespace RpgApi.Controllers
 {
     [ApiController]
-    [Route("[Controller]")]
-
+    [Route("[controller]")]
     public class PersonagemHabilidadesController : ControllerBase
     {
-        private readonly DataContext _context;
 
+        private readonly DataContext _context;
         public PersonagemHabilidadesController(DataContext context)
         {
             _context = context;
@@ -24,16 +22,16 @@ namespace RpgApi.Controller
         {
             try
             {
-                Personagem  personagem = await _context.Personagens
+                Personagem personagem = await _context.Personagens
                     .Include(p => p.Armas)
                     .Include(p => p.PersonagemHabilidades).ThenInclude(ps => ps.Habilidade)
                     .FirstOrDefaultAsync(p => p.Id == novoPersonagemHabilidade.PersonagemId);
 
                 if (personagem == null)
-                    throw new System.Exception("Personagem não encontrado para o Id informado.");
+                    throw new System.Exception("Personagem não encontrado para o Id Informado.");
 
                 Habilidade habilidade = await _context.Habilidades
-                    .FirstOrDefaultAsync(h => h.Id == novoPersonagemHabilidade.HabilidadeId);
+                                    .FirstOrDefaultAsync(h => h.Id == novoPersonagemHabilidade.HabilidadeId);
 
                 if (habilidade == null)
                     throw new System.Exception("Habilidade não encontrada.");
@@ -44,6 +42,61 @@ namespace RpgApi.Controller
                 await _context.PersonagemHabilidades.AddAsync(ph);
                 int linhasAfetadas = await _context.SaveChangesAsync();
 
+                return Ok(linhasAfetadas);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("{personagemId}")]
+        public async Task<IActionResult> GetHabilidadesPersonagem(int personagemId)
+        {
+            try
+            {
+                List<PersonagemHabilidade> phLista = new List<PersonagemHabilidade>();
+                phLista = await _context.PersonagemHabilidades
+                .Include(p => p.Personagem)
+                .Include(p => p.Habilidade)
+                .Where(p => p.Personagem.Id == personagemId).ToListAsync();
+                return Ok(phLista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetHabilidades")]
+        public async Task<IActionResult> GetHabilidades()
+        {
+            try
+            {
+                List<Habilidade> habilidades = new List<Habilidade>();
+                habilidades = await _context.Habilidades.ToListAsync();
+                return Ok(habilidades);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("DeletePersonagemHabilidade")]
+        public async Task<IActionResult> DeleteAsync(PersonagemHabilidade ph)
+        {
+            try
+            {
+                PersonagemHabilidade phRemover = await _context.PersonagemHabilidades
+                .FirstOrDefaultAsync(phBusca => phBusca.PersonagemId == ph.PersonagemId
+                && phBusca.HabilidadeId == ph.HabilidadeId);
+                
+                if (phRemover == null)
+                    throw new System.Exception("Personagem ou Habilidade não encontrados");
+
+                _context.PersonagemHabilidades.Remove(phRemover);
+                int linhasAfetadas = await _context.SaveChangesAsync();
                 return Ok(linhasAfetadas);
             }
             catch (System.Exception ex)

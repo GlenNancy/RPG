@@ -1,0 +1,8 @@
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\RpgMvc.exe
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\appsettings.Development.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\appsettings.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\RpgMvc.dll
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\RpgMvc.deps.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\RpgMvc.runtimeconfig.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\RpgMvc.pdb
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\Publish\Newtonsoft.Json.dll

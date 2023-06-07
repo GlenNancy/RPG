@@ -31,3 +31,8 @@ D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\obj\Debug\net7.0\RpgMvc.genrun
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\obj\Debug\net7.0\ref\RpgMvc.dll
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Newtonsoft.Json.dll
 D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\obj\Debug\net7.0\RpgMvc.csproj.CopyComplete
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Publish\web.config
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Publish\appsettings.Development.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Publish\appsettings.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Publish\RpgMvc.deps.json
+D:\2DS\AntonioMauricio\DSI\Aula04_07032023\RpgMvc\bin\Debug\net7.0\Publish\RpgMvc.runtimeconfig.json
